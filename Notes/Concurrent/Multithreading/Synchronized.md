@@ -37,6 +37,9 @@ public static synchronized void add(int value){
 synchronize运行时间和内存消耗都比用lock高?
 synchronized原始采用的是CPU悲观锁机制，即线程获得的是独占锁。独占锁意味着其他线程只能依靠阻塞来等待线程释放锁。而在CPU转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起CPU频繁的上下文切换导致效率很低。 而Lock用的是乐观锁方式。所谓乐观锁就是，每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。
 
+通过synchronized获得锁,之后进入wait状态的话,再次返回时将执行接下来的语句
+必须用while循环每次确保状态通过
+同时进入wait状态时锁将自动被释放
 
 Ref:
 [Java Synchronized Blocks]: url "http://tutorials.jenkov.com/java-concurrency/synchronized.html"
